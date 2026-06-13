@@ -1,0 +1,9 @@
+*.o
+*.obj
+*.a
+*.elf
+*.irx
+*.map
+build/
+obj/
+bin/
