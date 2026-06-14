@@ -1,0 +1,13 @@
+# Nothing from the build context needs to go into the image; the project is
+# bind-mounted at /work at run time.
+src
+examples
+reference
+obj
+bin
+dist
+*.elf
+*.o
+*.iso
+.git
+README.md

@@ -1,0 +1,18 @@
+# Build the local image (official ps2dev toolchain + make) and use it.
+#
+#   docker compose build                    # build the ps2dock image once
+#   docker compose run --rm ps2dev make     # build the sample in ./src
+#   docker compose run --rm ps2dev          # interactive shell at /src
+#
+services:
+  ps2dev:
+    build: .
+    image: ps2dock:local
+    working_dir: /work
+    volumes:
+      - ./:/work
+    # Keep STDIN open / allocate a TTY so an interactive shell works.
+    stdin_open: true
+    tty: true
+    # Default to an interactive shell; override on the command line to build.
+    command: ["/bin/bash"]

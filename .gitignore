@@ -7,3 +7,10 @@
 build/
 obj/
 bin/
+
+# make_iso.sh outputs
+*.iso
+dist/
+
+# local scratch (the scaffold drop)
+*.tar.gz
