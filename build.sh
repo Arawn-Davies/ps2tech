@@ -30,4 +30,14 @@ if [[ "${1:-}" == "shell" ]]; then
 fi
 
 # Pass all args straight to make (defaults to the `all` target).
-exec docker run "${common[@]}" "${IMAGE}" make "$@"
+docker run "${common[@]}" "${IMAGE}" make "$@"
+
+# Report the built ELF + its md5sum. Guarded so a clean build (no ELF)
+# doesn't trip set -e.
+elf="$(ls -1 "${HERE}"/bin/*.elf 2>/dev/null | head -n1 || true)"
+if [[ -n "${elf}" ]]; then
+  echo ">> done: ${elf}"
+  if command -v md5sum >/dev/null 2>&1; then
+    md5sum "${elf}"
+  fi
+fi
